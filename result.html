@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>감정 유형 결과</title>
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #fffde4, #f9d423);
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .result-box {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .result-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin: 10px 0;
+    }
+
+    .desc {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .back-btn {
+      padding: 12px 25px;
+      font-size: 1rem;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #e55a4e;
+    }
+
+    img.animal {
+      width: 120px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-title">당신의 감정 유형은...</div>
+    <div class="emoji">🎨</div>
+    <p class="desc">결과를 불러오는 중...</p>
+  </div>
+
+  <button class="back-btn" onclick="location.href='index.html'">처음으로 돌아가기</button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const emotion = params.get('emotion');
+    const emotionMap = {
+      red: {
+        title: '🔥 열정형',
+        desc: '당신은 강렬하고 뜨거운 감정을 지닌 사람입니다.',
+        emoji: '❤️',
+        animal: 'assets/images/lion.png'
+      },
+      blue: {
+        title: '🌊 차분형',
+        desc: '당신은 고요하고 침착한 사람입니다.',
+        emoji: '💙',
+        animal: 'assets/images/owl.png'
+      },
+      yellow: {
+        title: '☀️ 즐거움형',
+        desc: '유쾌하고 밝은 에너지를 지닌 당신입니다.',
+        emoji: '💛',
+        animal: 'assets/images/dog.png'
+      },
+      green: {
+        title: '🌿 회복형',
+        desc: '치유와 균형을 중시하는 당신입니다.',
+        emoji: '💚',
+        animal: 'assets/images/bear.png'
+      },
+      purple: {
+        title: '💜 감성형',
+        desc: '예술적이고 감정적인 당신입니다.',
+        emoji: '💜',
+        animal: 'assets/images/cat.png'
+      }
+    };
+    const box = document.getElementById('resultBox');
+    if (emotionMap[emotion]) {
+      const data = emotionMap[emotion];
+      box.innerHTML = `
+        <div class="result-title">${data.title}</div>
+        <div class="emoji">${data.emoji}</div>
+        <p class="desc">${data.desc}</p>
+        <img src="${data.animal}" class="animal" alt="동물 이미지"/>
+      `;
+    } else {
+      box.innerHTML = `
+        <div class="result-title">감정 유형을 찾을 수 없어요 😢</div>
+        <p class="desc">입력을 다시 확인해주세요.</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>

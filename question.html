@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>나의 감정 색상</title>
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #f9f3f3, #ffe0c3);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .question-block {
+      margin-bottom: 2rem;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .color-option {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .color-option.selected {
+      border-color: #333;
+      box-shadow: 0 0 0 4px #aaa;
+    }
+
+    .submit-btn {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #e45b4f;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>나의 감정을 색깔로 선택해줘</h2>
+
+  <form id="colorForm">
+    <!-- 질문 1 -->
+    <div class="question-block">
+      <p>Q1. 지금 가장 눈에 들어오는 색은?</p>
+      <div class="options" data-question="1">
+        <div class="color-option" data-color="red" style="background-color: #f44336;"></div>
+        <div class="color-option" data-color="blue" style="background-color: #2196f3;"></div>
+        <div class="color-option" data-color="yellow" style="background-color: #ffeb3b;"></div>
+        <div class="color-option" data-color="green" style="background-color: #4caf50;"></div>
+        <div class="color-option" data-color="purple" style="background-color: #9c27b0;"></div>
+      </div>
+    </div>
+
+    <!-- 질문 복사 -->
+    <div class="question-block">
+      <p>Q2. 나를 가장 편안하게 하는 색은?</p>
+      <div class="options" data-question="2"> ... </div>
+    </div>
+    <div class="question-block">
+      <p>Q3. 가장 닮고 싶은 감정의 색은?</p>
+      <div class="options" data-question="3"> ... </div>
+    </div>
+    <div class="question-block">
+      <p>Q4. 스트레스를 받을 때 떠오르는 색은?</p>
+      <div class="options" data-question="4"> ... </div>
+    </div>
+    <div class="question-block">
+      <p>Q5. 지금 내 감정과 가장 가까운 색은?</p>
+      <div class="options" data-question="5"> ... </div>
+    </div>
+
+    <button class="submit-btn" type="submit">감정 유형 확인하기</button>
+  </form>
+
+  <script>
+    const selections = {};
+    document.querySelectorAll(".options").forEach(group => {
+      group.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("color-option")) return;
+        const question = group.getAttribute("data-question");
+        const selected = group.querySelector(".selected");
+        if (selected) selected.classList.remove("selected");
+        e.target.classList.add("selected");
+        selections[question] = e.target.getAttribute("data-color");
+      });
+    });
+
+    document.getElementById("colorForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (Object.keys(selections).length < 5) {
+        alert("5개 문항 모두 선택해주세요!");
+        return;
+      }
+      const colorCounts = {};
+      Object.values(selections).forEach(color => {
+        colorCounts[color] = (colorCounts[color] || 0) + 1;
+      });
+      let maxColor = Object.keys(colorCounts).reduce((a, b) => colorCounts[a] > colorCounts[b] ? a : b);
+      window.location.href = `result.html?emotion=${maxColor}`;
+    });
+  </script>
+
+</body>
+</html>
