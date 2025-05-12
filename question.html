@@ -7,152 +7,116 @@
   <link rel="stylesheet" href="css/responsive.css" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #f9f3f3, #ffe0c3);
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #e0f7f4, #c2f0ea);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+    .color-option { width: 60px; height: 60px; border-radius: 50%; display: inline-block; margin: 5px; cursor: pointer; border: 2px solid #ccc; }
+    .selected { outline: 4px solid #333; }
+    .question-block { margin-bottom: 2rem; }
+  
+<style>
+  body {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
+  .color-option {
+    transition: transform 0.3s ease;
+  }
+  .color-option.selected {
+    transform: scale(1.1) rotate(3deg);
+    outline: 4px solid #333;
+  }
 
-    .question-block {
-      margin-bottom: 2rem;
-    }
+  .submit-btn {
+    padding: 20px 40px;
+    font-size: 1.3rem;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-    .options {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
+  .submit-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+</style>
 
-    .color-option {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      border: 3px solid transparent;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .color-option.selected {
-      border-color: #333;
-      box-shadow: 0 0 0 4px #aaa;
-    }
-
-    .submit-btn {
-      padding: 15px 30px;
-      font-size: 1.1rem;
-      background-color: #ff6f61;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .submit-btn:hover {
-      background-color: #e45b4f;
-    }
-  </style>
+</style>
 </head>
 <body>
-
   <h2>나의 감정을 색깔로 선택해줘</h2>
-
   <form id="colorForm">
+<div class="question-block"><p>Q1. 지금 가장 마음이 끌리는 색은 무엇인가요?</p><div data-question="1">
+<span class="color-option" style="background:#ff9aa2" data-color="red" title="red"></span>
+<span class="color-option" style="background:#aec6cf" data-color="blue" title="blue"></span>
+<span class="color-option" style="background:#fff8b0" data-color="yellow" title="yellow"></span>
+<span class="color-option" style="background:#b5ead7" data-color="green" title="green"></span>
+<span class="color-option" style="background:#d5aae0" data-color="purple" title="purple"></span>
+</div></div>
+<div class="question-block"><p>Q2. 요즘 나를 가장 편안하게 해주는 색은 무엇인가요?</p><div data-question="2">
+<span class="color-option" style="background:#ff9aa2" data-color="red" title="red"></span>
+<span class="color-option" style="background:#aec6cf" data-color="blue" title="blue"></span>
+<span class="color-option" style="background:#fff8b0" data-color="yellow" title="yellow"></span>
+<span class="color-option" style="background:#b5ead7" data-color="green" title="green"></span>
+<span class="color-option" style="background:#d5aae0" data-color="purple" title="purple"></span>
+</div></div>
+<div class="question-block"><p>Q3. 앞으로 닮고 싶은 감정의 색은 무엇인가요?</p><div data-question="3">
+<span class="color-option" style="background:#ff9aa2" data-color="red" title="red"></span>
+<span class="color-option" style="background:#aec6cf" data-color="blue" title="blue"></span>
+<span class="color-option" style="background:#fff8b0" data-color="yellow" title="yellow"></span>
+<span class="color-option" style="background:#b5ead7" data-color="green" title="green"></span>
+<span class="color-option" style="background:#d5aae0" data-color="purple" title="purple"></span>
+</div></div>
+<div class="question-block"><p>Q4. 스트레스를 받을 때 떠오르는 색은 무엇인가요?</p><div data-question="4">
+<span class="color-option" style="background:#ff9aa2" data-color="red" title="red"></span>
+<span class="color-option" style="background:#aec6cf" data-color="blue" title="blue"></span>
+<span class="color-option" style="background:#fff8b0" data-color="yellow" title="yellow"></span>
+<span class="color-option" style="background:#b5ead7" data-color="green" title="green"></span>
+<span class="color-option" style="background:#d5aae0" data-color="purple" title="purple"></span>
+</div></div>
+<div class="question-block"><p>Q5. 현재 나의 감정과 가장 가까운 색은 무엇인가요?</p><div data-question="5">
+<span class="color-option" style="background:#ff9aa2" data-color="red" title="red"></span>
+<span class="color-option" style="background:#aec6cf" data-color="blue" title="blue"></span>
+<span class="color-option" style="background:#fff8b0" data-color="yellow" title="yellow"></span>
+<span class="color-option" style="background:#b5ead7" data-color="green" title="green"></span>
+<span class="color-option" style="background:#d5aae0" data-color="purple" title="purple"></span>
+</div></div>
 
-    <div class="question-block">
-      <p>Q1. 질문 텍스트 예시</p>
-      <div class="options" data-question="1">
-        <div class="color-option" data-color="red" style="background-color: #f44336;"></div>
-        <div class="color-option" data-color="blue" style="background-color: #2196f3;"></div>
-        <div class="color-option" data-color="yellow" style="background-color: #ffeb3b;"></div>
-        <div class="color-option" data-color="green" style="background-color: #4caf50;"></div>
-        <div class="color-option" data-color="purple" style="background-color: #9c27b0;"></div>
-      </div>
-    </div>
-    
-    <div class="question-block">
-      <p>Q2. 질문 텍스트 예시</p>
-      <div class="options" data-question="2">
-        <div class="color-option" data-color="red" style="background-color: #f44336;"></div>
-        <div class="color-option" data-color="blue" style="background-color: #2196f3;"></div>
-        <div class="color-option" data-color="yellow" style="background-color: #ffeb3b;"></div>
-        <div class="color-option" data-color="green" style="background-color: #4caf50;"></div>
-        <div class="color-option" data-color="purple" style="background-color: #9c27b0;"></div>
-      </div>
-    </div>
-    
-    <div class="question-block">
-      <p>Q3. 질문 텍스트 예시</p>
-      <div class="options" data-question="3">
-        <div class="color-option" data-color="red" style="background-color: #f44336;"></div>
-        <div class="color-option" data-color="blue" style="background-color: #2196f3;"></div>
-        <div class="color-option" data-color="yellow" style="background-color: #ffeb3b;"></div>
-        <div class="color-option" data-color="green" style="background-color: #4caf50;"></div>
-        <div class="color-option" data-color="purple" style="background-color: #9c27b0;"></div>
-      </div>
-    </div>
-    
-    <div class="question-block">
-      <p>Q4. 질문 텍스트 예시</p>
-      <div class="options" data-question="4">
-        <div class="color-option" data-color="red" style="background-color: #f44336;"></div>
-        <div class="color-option" data-color="blue" style="background-color: #2196f3;"></div>
-        <div class="color-option" data-color="yellow" style="background-color: #ffeb3b;"></div>
-        <div class="color-option" data-color="green" style="background-color: #4caf50;"></div>
-        <div class="color-option" data-color="purple" style="background-color: #9c27b0;"></div>
-      </div>
-    </div>
-    
-    <div class="question-block">
-      <p>Q5. 질문 텍스트 예시</p>
-      <div class="options" data-question="5">
-        <div class="color-option" data-color="red" style="background-color: #f44336;"></div>
-        <div class="color-option" data-color="blue" style="background-color: #2196f3;"></div>
-        <div class="color-option" data-color="yellow" style="background-color: #ffeb3b;"></div>
-        <div class="color-option" data-color="green" style="background-color: #4caf50;"></div>
-        <div class="color-option" data-color="purple" style="background-color: #9c27b0;"></div>
-      </div>
-    </div>
-    
-    <button class="submit-btn" type="submit">감정 유형 확인하기</button>
+    <button type="submit" style="padding: 20px 40px; font-size: 1.3rem; background-color: #ff6f61; color: white; border: none; border-radius: 10px; cursor: pointer;">감정 유형 확인하기</button>
   </form>
-
-  <script>
-    const selections = {};
-    document.querySelectorAll(".options").forEach(group => {
-      group.addEventListener("click", (e) => {
-        if (!e.target.classList.contains("color-option")) return;
-        const question = group.getAttribute("data-question");
-        const selected = group.querySelector(".selected");
-        if (selected) selected.classList.remove("selected");
-        e.target.classList.add("selected");
-        selections[question] = e.target.getAttribute("data-color");
-      });
+<script>
+  const selections = {};
+  document.querySelectorAll("[data-question]").forEach(group => {
+    group.addEventListener("click", e => {
+      if (!e.target.dataset.color) return;
+      const question = group.dataset.question;
+      group.querySelectorAll(".color-option").forEach(el => el.classList.remove("selected"));
+      e.target.classList.add("selected");
+      selections[question] = e.target.dataset.color;
     });
-
-    document.getElementById("colorForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      if (Object.keys(selections).length < 5) {
-        alert("5개 문항 모두 선택해주세요!");
-        return;
-      }
-      const colorCounts = {};
-      Object.values(selections).forEach(color => {
-        colorCounts[color] = (colorCounts[color] || 0) + 1;
-      });
-      let maxColor = Object.keys(colorCounts).reduce((a, b) => colorCounts[a] > colorCounts[b] ? a : b);
-      window.location.href = `result.html?emotion=${maxColor}`;
-    });
-  </script>
-
+  });
+  document.getElementById("colorForm").addEventListener("submit", e => {
+    e.preventDefault();
+    if (Object.keys(selections).length < 5) return alert("모든 질문에 답해주세요!");
+    const counts = {}; Object.values(selections).forEach(c => counts[c] = (counts[c] || 0) + 1);
+    const result = Object.keys(counts).reduce((a,b) => counts[a] > counts[b] ? a : b);
+    location.href = "result.html?emotion=" + result;
+  });
+</script>
 </body>
 </html>

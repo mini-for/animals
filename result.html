@@ -4,17 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>감정 유형 결과</title>
-  <link rel="stylesheet" href="css/responsive.css" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom, #fffde4, #f9d423);
-      margin: 0;
-      padding: 30px;
-      text-align: center;
-    }
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #e0f7f4, #c2f0ea);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
 
     .result-box {
+  margin-top: 40px;
+
       background: white;
       border-radius: 20px;
       padding: 30px;
@@ -53,12 +59,23 @@
     .back-btn:hover {
       background-color: #e55a4e;
     }
-
-    img.animal {
-      width: 120px;
-      margin-top: 15px;
-    }
   </style>
+
+<style>
+  .result-box {
+  margin-top: 40px;
+
+    
+  }
+  
+  from { opacity: 0; transform: translateY(-100px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
 </head>
 <body>
 
@@ -68,42 +85,17 @@
     <p class="desc">결과를 불러오는 중...</p>
   </div>
 
-  <button class="back-btn" onclick="location.href='index.html'">처음으로 돌아가기</button>
+<button class="back-btn" style="margin-top: 60px;" style="margin-top: 40px;" onclick="location.href='index.html'">처음으로 돌아가기</button>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const emotion = params.get('emotion');
     const emotionMap = {
-      red: {
-        title: '🔥 열정형',
-        desc: '당신은 강렬하고 뜨거운 감정을 지닌 사람입니다.',
-        emoji: '❤️',
-        animal: 'assets/images/lion.png'
-      },
-      blue: {
-        title: '🌊 차분형',
-        desc: '당신은 고요하고 침착한 사람입니다.',
-        emoji: '💙',
-        animal: 'assets/images/owl.png'
-      },
-      yellow: {
-        title: '☀️ 즐거움형',
-        desc: '유쾌하고 밝은 에너지를 지닌 당신입니다.',
-        emoji: '💛',
-        animal: 'assets/images/dog.png'
-      },
-      green: {
-        title: '🌿 회복형',
-        desc: '치유와 균형을 중시하는 당신입니다.',
-        emoji: '💚',
-        animal: 'assets/images/bear.png'
-      },
-      purple: {
-        title: '💜 감성형',
-        desc: '예술적이고 감정적인 당신입니다.',
-        emoji: '💜',
-        animal: 'assets/images/cat.png'
-      }
+      red: { title: '🔥 열정형', desc: '강렬하고 에너지 넘치는 감정입니다.', emoji: '❤️' },
+      blue: { title: '🌊 차분형', desc: '조용하고 안정적인 감정입니다.', emoji: '💙' },
+      yellow: { title: '☀️ 즐거움형', desc: '밝고 유쾌한 감정입니다.', emoji: '💛' },
+      green: { title: '🌿 회복형', desc: '치유와 균형을 중시하는 감정입니다.', emoji: '💚' },
+      purple: { title: '💜 감성형', desc: '예술적이고 감정적인 성향입니다.', emoji: '💜' }
     };
     const box = document.getElementById('resultBox');
     if (emotionMap[emotion]) {
@@ -112,7 +104,6 @@
         <div class="result-title">${data.title}</div>
         <div class="emoji">${data.emoji}</div>
         <p class="desc">${data.desc}</p>
-        <img src="${data.animal}" class="animal" alt="동물 이미지"/>
       `;
     } else {
       box.innerHTML = `
@@ -124,3 +115,5 @@
 
 </body>
 </html>
+
+  
