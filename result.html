@@ -59,7 +59,27 @@
     .back-btn:hover {
       background-color: #e55a4e;
     }
-  </style>
+  
+<style>
+.download-btn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  background-color: #4cafaa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+}
+.download-btn:hover {
+  background-color: #3a9c95;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+</style>
+
+</style>
 
 <style>
   .result-box {
@@ -74,44 +94,50 @@
     from { opacity: 0; transform: scale(0.8); }
     to { opacity: 1; transform: scale(1); }
   }
+
+<style>
+.download-btn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  background-color: #4cafaa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+}
+.download-btn:hover {
+  background-color: #3a9c95;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+</style>
+
 </style>
 
 </head>
 <body>
 
   <div class="result-box" id="resultBox">
-    <div class="result-title">당신의 감정 유형은...</div>
-    <div class="emoji">🎨</div>
-    <p class="desc">결과를 불러오는 중...</p>
+<div class="result-title">☀️ 즐거움형</div>
+<div class="emoji">💛</div>
+<p class="desc">유쾌하고 밝은 에너지를 지닌 당신입니다.</p>
   </div>
 
 <button class="back-btn" style="margin-top: 60px;" style="margin-top: 40px;" onclick="location.href='index.html'">처음으로 돌아가기</button>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const emotion = params.get('emotion');
-    const emotionMap = {
-      red: { title: '🔥 열정형', desc: '강렬하고 에너지 넘치는 감정입니다.', emoji: '❤️' },
-      blue: { title: '🌊 차분형', desc: '조용하고 안정적인 감정입니다.', emoji: '💙' },
-      yellow: { title: '☀️ 즐거움형', desc: '밝고 유쾌한 감정입니다.', emoji: '💛' },
-      green: { title: '🌿 회복형', desc: '치유와 균형을 중시하는 감정입니다.', emoji: '💚' },
-      purple: { title: '💜 감성형', desc: '예술적이고 감정적인 성향입니다.', emoji: '💜' }
-    };
-    const box = document.getElementById('resultBox');
-    if (emotionMap[emotion]) {
-      const data = emotionMap[emotion];
-      box.innerHTML = `
-        <div class="result-title">${data.title}</div>
-        <div class="emoji">${data.emoji}</div>
-        <p class="desc">${data.desc}</p>
-      `;
-    } else {
-      box.innerHTML = `
-        <div class="result-title">감정 유형을 찾을 수 없어요 😢</div>
-        <p class="desc">입력을 다시 확인해주세요.</p>
-      `;
-    }
-  </script>
+    
+  const userName = localStorage.getItem('userName');
+  const userBirth = localStorage.getItem('userBirth');
+  const userInfoEl = document.getElementById('userInfo');
+  if (userName && userBirth) {
+    userInfoEl.textContent = `이름: ${userName} / 생년월일: ${userBirth}`;
+  }
+
+  // 감정유형 스크립트 제거됨
+</script>
 
 </body>
 </html>

@@ -78,9 +78,24 @@
       <label for="birth">생년월일</label>
       <input type="date" id="birth" name="birth" required />
 
-      <button class="next-btn" type="submit">다음</button>
+      <label for="phone">전화번호 뒷자리</label>
+      <input type="text" id="phone" name="phone" placeholder="1234" maxlength="4" pattern="\d{4}" required />
+
+
+      <button class="next-btn" type="submit" onclick="saveUserInfo()">다음</button>
     </form>
   </div>
 
+
+<script>
+  function saveUserInfo() {
+    const name = document.getElementById('name').value;
+    const birth = document.getElementById('birth').value;
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userBirth', birth);
+    const phone = document.getElementById('phone').value;
+    localStorage.setItem('userPhone', phone);
+  }
+</script>
 </body>
 </html>
